@@ -22,7 +22,7 @@ module.exports = {
         }
         if(command.toLowerCase() === 'all'){
             let role = message.guild.roles.find('name', 'All Regions');
-            if(message.member.roles.find('name', 'All Regions')){
+            if(message.member.roles != null && message.member.roles.find('name', 'All Regions')){
                 message.member.removeRole(role);
                 message.channel.send(`You have been removed from the group All Regions`)
             } else {
@@ -49,7 +49,7 @@ async function list(message){
 async function setTeam(message){
     let team = message.content.substring(1);
     //check if player has any teams
-    if(message.member.roles.find("name", "Mystic") || message.member.roles.find("name", "Valor") || message.member.roles.find("name", "Instinct")){
+    if((message.member.roles != null) && (message.member.roles.find("name", "Mystic") || message.member.roles.find("name", "Valor") || message.member.roles.find("name", "Instinct"))){
         message.channel.send('You already have an assigned team!');
         return;
     }
@@ -62,7 +62,7 @@ async function setLocale(message){
     let locale = message.content.substring(1).toLowerCase();
     let id = lgas[locale].roleid;
     let role = message.guild.roles.find('name', lgas[locale].lga);
-    if(message.member.roles.find('name', lgas[locale].lga)){
+    if(message.member.roles != null && message.member.roles.find('name', lgas[locale].lga)){
         message.member.removeRole(role);
         message.channel.send(`You have been removed from the group ${lgas[locale].lga}`)
     } else {
