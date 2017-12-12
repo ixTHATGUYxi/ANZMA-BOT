@@ -57,6 +57,9 @@ module.exports = {
         let results = await rmdb.queryAsync('SELECT lga, shortname, role FROM geowebhooks');
         let lgas = {};
         for(let row in results){
+            if(results[row].shortname == null){
+                continue
+            }
             lgas[results[row].shortname.toLowerCase()] = {lga: results[row].lga, roleid: results[row].role.toString()};
         }
         return lgas
