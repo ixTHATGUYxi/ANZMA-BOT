@@ -5,5 +5,28 @@ const pokedex = ["Bulbasaur","Ivysaur","Venusaur","Charmander","Charmeleon","Cha
 module.exports = {
     getPokemonName: async function(id){
         return pokedex[id - 1];
+    },
+
+    getNestTime: async function(){
+        let neststart = new Date(1493856000000);
+        let now = new Date();
+        let _second = 1000;
+        let _minute = _second * 60;
+        let _hour = _minute * 60;
+        let _day = _hour * 24;
+        while(neststart < now){
+            neststart.setDate(neststart.getDate() + 14);
+        }
+
+        let timeLeft = neststart - now;
+        var days = Math.floor(timeLeft / _day);
+        var hours = Math.floor((timeLeft % _day) / _hour);
+        var minutes = Math.floor((timeLeft % _hour) / _minute);
+
+        return pad(days, 2) + 'd' + pad(hours, 2) + 'h' + pad(minutes, 2) + 'm';
     }
+}
+
+function pad(number, padding) {
+    return number.toString().length <= padding ? ('00000' + number).slice(-Math.abs(padding)) : number;
 }

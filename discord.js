@@ -5,7 +5,8 @@ const models   = require('./vmdiscord/models');
 const logger   = require('./vmdiscord/logger');
 const whosthat = require('./vmdiscord/whosthat');
 const roles    = require('./vmdiscord/roles');
-const Discord = require('discord.js');
+const utils    = require('./vmdiscord/utils');
+const Discord  = require('discord.js');
 const client = new Discord.Client({fetchAllMembers: true});
 
 client.on('ready', () => {
@@ -44,6 +45,9 @@ client.on('message', message => {
             case 'who':
                 console.log('who');
                 break;
+            case 'nest':
+                timeReply(message);
+                break;
         }
     }
 
@@ -53,6 +57,11 @@ client.on('message', message => {
 client.on('error', error => {
     logger.error(error);
 });
+
+async function timeReply(message){
+    time = await utils.getNestTime();
+    message.reply('Next nest rotation is in: ' + time);
+}
 
 async function top(message){
     let top = await models.getTop(message);
