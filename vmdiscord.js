@@ -6,15 +6,12 @@ const logger   = require('./vmdiscord/logger');
 const whosthat = require('./vmdiscord/whosthat');
 const utils    = require('./vmdiscord/utils');
 const Discord  = require('discord.js');
+const roles    = require('./vmdiscord/roles');
 const client = new Discord.Client({fetchAllMembers: true});
-
 
 client.on('ready', () => {
   logger.info('I am ready!');
   whosthat.start(client);
-  if(config.discord.roles === true){
-    var roles    = require('./vmdiscord/roles');
-  }
 });
 
 client.on('message', message => {

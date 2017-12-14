@@ -4,8 +4,11 @@ const logger      = require('./logger');
 const utils       = require('./utils');
 const models      = require('./models');
 
+
 let lgas = {};
-getLGAs();
+if(config.discord.roles === true){
+    getLGAs();
+}
 
 module.exports = {
     handler: async function(message){
