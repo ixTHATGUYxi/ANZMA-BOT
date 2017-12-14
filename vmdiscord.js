@@ -8,7 +8,7 @@ const utils    = require('./vmdiscord/utils');
 const Discord  = require('discord.js');
 const client = new Discord.Client({fetchAllMembers: true});
 
-if(config.discord.roles){
+if(config.discord.roles === true){
     const roles    = require('./vmdiscord/roles');
 }
 
@@ -28,7 +28,7 @@ client.on('message', message => {
 
     }
 
-    if(config.discord.roles){
+    if(config.discord.roles === true){
         if(message.content.startsWith('%')){
             roles.handler(message);
         }
