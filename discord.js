@@ -4,10 +4,13 @@ const config   = require('./vmdiscord/config');
 const models   = require('./vmdiscord/models');
 const logger   = require('./vmdiscord/logger');
 const whosthat = require('./vmdiscord/whosthat');
-const roles    = require('./vmdiscord/roles');
 const utils    = require('./vmdiscord/utils');
 const Discord  = require('discord.js');
 const client = new Discord.Client({fetchAllMembers: true});
+
+if(config.discord.roles){
+    const roles    = require('./vmdiscord/roles');
+}
 
 client.on('ready', () => {
   logger.info('I am ready!');
@@ -25,8 +28,10 @@ client.on('message', message => {
 
     }
 
-    if(message.content.startsWith('%')){
-        roles.handler(message);
+    if(config.discord.roles){
+        if(message.content.startsWith('%')){
+            roles.handler(message);
+        }
     }
 
     if((message.content.startsWith('?')) && (channel.id === config.discord.whosthat)){

@@ -1,0 +1,17 @@
+sql:
+    connections:   20
+    rmhost:        host for rmdb
+    rmdb:          db for rm
+    rmuser:        rmdb username
+    rmpass:        rmdbpass
+    discordhost:   host for discord db
+    discorddb:     db for discord stats
+    discorduser:   discord db username
+    discordpass:   discord db password
+
+discord:
+    token: discord bot token
+    roles: false
+    whosthat: 'channel ID for games'
+    guildid: 'Discord guild id'
+    difficulty: 3
