@@ -25,7 +25,7 @@ client.on('message', message => {
 
     }
 
-    if(config.discord.roles === true){
+    if(config.roles){
         if(message.content.startsWith('%')){
             roles.handler(message);
         }

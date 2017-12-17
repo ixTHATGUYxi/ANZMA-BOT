@@ -6,37 +6,41 @@ const models      = require('./models');
 
 
 let lgas = {};
-if(config.discord.roles === true){
+if(config.roles.sortlga === true){
     getLGAs();
 }
 
 module.exports = {
     handler: async function(message){
         let command = message.content.substring(1);
-        if(command.toLowerCase() === 'list'){
-            list(message);
-            return;
-        }
-        if(command.toLowerCase() === 'mystic' || 
-           command.toLowerCase() === 'valor' || 
-           command.toLowerCase() === 'instinct'){
-            setTeam(message);
-            return;
-        }
-        if(command.toLowerCase() === 'all'){
-            let role = message.guild.roles.find('name', 'All Regions');
-            if(message.member != null && message.member.roles.find('name', 'All Regions')){
-                message.member.removeRole(role);
-                message.channel.send(`You have been removed from the group All Regions`)
-            } else {
-                message.member.addRole(role);
-                message.channel.send(`You have been added to the group All Regions`)
+        if(config.roles.sortlga === true){
+            if(command.toLowerCase() === 'list'){
+                list(message);
+                return;
             }
-            return;
+            if(command.toLowerCase() === 'all'){
+                let role = message.guild.roles.find('name', 'All Regions');
+                if(message.member != null && message.member.roles.find('name', 'All Regions')){
+                    message.member.removeRole(role);
+                    message.channel.send(`You have been removed from the group All Regions`)
+                } else {
+                    message.member.addRole(role);
+                    message.channel.send(`You have been added to the group All Regions`)
+                }
+                return;
+            }
+            if(lgas.hasOwnProperty(command.toLowerCase())){
+                setLocale(message);
+                return;
+            }
         }
-        if(lgas.hasOwnProperty(command.toLowerCase())){
-            setLocale(message);
-            return;
+        if(config.roles.teams === true){
+            if(command.toLowerCase() === 'mystic' || 
+            command.toLowerCase() === 'valor' || 
+            command.toLowerCase() === 'instinct'){
+                setTeam(message);
+                return;
+            }
         }
     }
 }

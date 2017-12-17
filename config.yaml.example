@@ -11,7 +11,10 @@ sql:
 
 discord:
     token: discord bot token
-    roles: false
     whosthat: 'channel ID for games'
     guildid: 'Discord guild id'
     difficulty: 3
+
+roles: 
+    sortlga: false
+    teams: true
