@@ -1,6 +1,7 @@
 `use strict`
 const config      = require('./config');
 const logger      = require('./logger');
+const utils       = require('./utils');
 const Bluebird    = require('bluebird');
 const mysql       = require('mysql');
 
@@ -62,5 +63,23 @@ module.exports = {
             }
         }
         return lgas
+    },
+
+    getEnabledEncounters: async function(){
+        let results = await rmdb.queryAsync('SELECT pokemon_id, @total := (SELECT COUNT(*) FROM pokemon WHERE pokemon_id = encwhitelist.pokemon_id) AS total, ((@total / (SELECT COUNT(*) FROM pokemon)) * 100) as totalper FROM encwhitelist WHERE enabled = 1');
+        let enclist = {};
+        for(let row in results){
+            enclist[await utils.getPokemonName(results[row].pokemon_id)] = {'total': results[row].total, 'percent': await utils.fourdec(results[row].totalper) + '%' };
+            //enclist.push(await utils.getPokemonName(results[row].pokemon_id));
+        }
+        return enclist;
+    },
+
+    enableEncounter: async function(dexid){
+        rmdb.queryAsync('INSERT INTO encwhitelist (pokemon_id, enabled) VALUES (' + dexid + ', 1) ON DUPLICATE KEY UPDATE enabled=1')
+    },
+    
+    disableEncounter: async function(dexid){
+        rmdb.queryAsync('INSERT INTO encwhitelist (pokemon_id, enabled) VALUES (' + dexid + ', 0) ON DUPLICATE KEY UPDATE enabled=0')
     }
 }

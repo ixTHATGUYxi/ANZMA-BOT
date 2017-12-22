@@ -7,6 +7,10 @@ module.exports = {
         return pokedex[id - 1];
     },
 
+    getPokemonId: async function(pokemon){
+        return pokedex.indexOf(pokemon) + 1;
+    },
+
     getNestTime: async function(){
         let neststart = new Date(1493859600000);
         let now = new Date();
@@ -24,6 +28,10 @@ module.exports = {
         var minutes = Math.floor((timeLeft % _hour) / _minute);
 
         return pad(days, 2) + 'd' + pad(hours, 2) + 'h' + pad(minutes, 2) + 'm';
+    },
+
+    fourdec: async function(f){
+        return Math.round(f * 10000) / 10000;
     }
 }
 

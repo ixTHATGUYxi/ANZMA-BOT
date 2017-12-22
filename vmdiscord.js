@@ -5,6 +5,7 @@ const models   = require('./vmdiscord/models');
 const logger   = require('./vmdiscord/logger');
 const whosthat = require('./vmdiscord/whosthat');
 const utils    = require('./vmdiscord/utils');
+const iv       = require('./vmdiscord/iv');
 const Discord  = require('discord.js');
 const roles    = require('./vmdiscord/roles');
 const client = new Discord.Client({fetchAllMembers: true});
@@ -22,7 +23,10 @@ client.on('message', message => {
         message.reply(message.author.username);
         message.reply(message.author.tag);
         message.reply(message.author.toString());
+    }
 
+    if((message.content.startsWith("!iv ")) && (config.discord.admins) && (config.discord.admins.indexOf(message.author.id) > -1)){
+        iv.handler(message);
     }
 
     if(config.roles){
