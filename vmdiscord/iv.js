@@ -44,7 +44,7 @@ module.exports = {
                 pokename = await utils.getPokemonName(dexid);
             } else {
                 dexid = await utils.getPokemonId(pokemon);
-                if(dexid === 0) return;
+                if(dexid === undefined) return;
                 pokename = pokemon;
             }
             message.channel.send(`Enabling #${dexid} - ${pokename} for IV scanning.`);
@@ -61,12 +61,4 @@ async function printList(message){
     }
     r += '```';
     message.channel.send(r);
-}
-
-async function addpoke(message){
-
-}
-
-async function removepoke(message){
-
 }

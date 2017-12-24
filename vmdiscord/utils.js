@@ -8,7 +8,11 @@ module.exports = {
     },
 
     getPokemonId: async function(pokemon){
-        return pokedex.indexOf(pokemon) + 1;
+        for(let k in pokedex){
+            if(pokedex[k].toLowerCase() === pokemon.toLowerCase()){
+                return Number(k) + 1
+            }
+        }
     },
 
     getNestTime: async function(){
