@@ -26,7 +26,7 @@ module.exports = {
             } else {
                 dexid = await utils.getPokemonId(pokemon);
                 if(dexid === undefined) return;
-                pokename = pokemon;
+                pokename = await utils.getPokemonName(dexid);
             }
             message.channel.send(`Disabling #${dexid} - ${pokename} for IV scanning.`)
             models.disableEncounter(dexid);
@@ -45,7 +45,7 @@ module.exports = {
             } else {
                 dexid = await utils.getPokemonId(pokemon);
                 if(dexid === undefined) return;
-                pokename = pokemon;
+                pokename = await utils.getPokemonName(dexid);
             }
             message.channel.send(`Enabling #${dexid} - ${pokename} for IV scanning.`);
             models.enableEncounter(dexid);
