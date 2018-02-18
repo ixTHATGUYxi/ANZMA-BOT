@@ -3,13 +3,10 @@
 TO CREATE TABLES FOR ROLES
 ==========================
 CREATE TABLE `geowebhooks` (
-    `lga` VARCHAR(50) NOT NULL COLLATE 'utf8mb4_unicode_ci',
-    `raid_webhook` VARCHAR(255) NOT NULL COLLATE 'utf8mb4_unicode_ci',
-    `rare_webhook` VARCHAR(255) NOT NULL COLLATE 'utf8mb4_unicode_ci',
-    `tls_webhook` VARCHAR(255) NOT NULL COLLATE 'utf8mb4_unicode_ci',
-    `role` BIGINT(20) NULL DEFAULT NULL,
-    `shortname` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_unicode_ci',
-    PRIMARY KEY (`lga`)
+`lga` VARCHAR(50) NOT NULL COLLATE 'utf8mb4_unicode_ci',
+`role` BIGINT(20) NULL DEFAULT NULL,
+`shortname` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_unicode_ci',
+PRIMARY KEY (`lga`)
 )
 COLLATE='utf8mb4_unicode_ci'
 ENGINE=InnoDB
@@ -17,7 +14,7 @@ ENGINE=InnoDB
 
 TO INSERT DATA INTO THE TABLE FOR ROLES FOR BOT
 ===============================================
-INSERT INTO geowebhooks (lga,raid_webhook,rare_webhook,tls_webhook,role,shortname) VALUES ('<lga = rolename>','NULL','NULL','NULL','<role = RoleID>','<shortname = command used to add/remove role>');
+INSERT INTO geowebhooks (lga,role,shortname) VALUES ('<lga = rolename>','<role = RoleID>','<shortname = command used to add/remove role>');
 
 TO DELETE A ROW FROM THE TABLE
 ==============================
