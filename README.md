@@ -30,7 +30,7 @@ VM BOT
 
 ### How do I get set up? ###
 
-Git Clone
+Git Clone This Repository
 Change Config to suit bot
 Add Bot to Discord
 Create Tables
