@@ -32,7 +32,7 @@ VM BOT
 
 Git Clone This Repository
 Change Config to suit bot
-Add Bot to Discord
+Add Bot to Discord - Use this Link to Create/Insert Your bot into your discord --> https://github.com/reactiflux/discord-irc/wiki/Creating-a-discord-bot-&-getting-a-token
 Create Tables
 Add stuff to tables
 wa-la
