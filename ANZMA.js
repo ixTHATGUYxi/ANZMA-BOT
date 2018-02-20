@@ -1,13 +1,13 @@
 `use strict`
 
-const config   = require('./vmdiscord/config');
-const models   = require('./vmdiscord/models');
-const logger   = require('./vmdiscord/logger');
-const whosthat = require('./vmdiscord/whosthat');
-const utils    = require('./vmdiscord/utils');
-const iv       = require('./vmdiscord/iv');
+const config   = require('./ANZMA/config');
+const models   = require('./ANZMA/models');
+const logger   = require('./ANZMA/logger');
+const whosthat = require('./ANZMA/whosthat');
+const utils    = require('./ANZMA/utils');
+const iv       = require('./ANZMA/iv');
 const Discord  = require('discord.js');
-const roles    = require('./vmdiscord/roles');
+const roles    = require('./ANZMA/roles');
 const client = new Discord.Client({fetchAllMembers: true});
 
 client.on('ready', () => {
