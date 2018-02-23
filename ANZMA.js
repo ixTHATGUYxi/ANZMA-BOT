@@ -15,10 +15,33 @@ client.on('ready', () => {
   whosthat.start(client);
 });
 
+
 client.on('message', message => {
     let channel = message.channel;
     if(message.author.bot){ return; }
 
+          if((message.content === '%map') && (config.commands.map === 'true')){
+          message.reply(config.settings.map);
+          
+          
+          if(config.roles){
+          if(message.content.startsWith('%')){
+          roles.handler(message);
+          }
+          }
+          }
+
+          if((message.content === '%link') && (config.commands.link === 'true')){
+          message.reply(config.settings.link);
+          
+          
+          if(config.roles){
+          if(message.content.startsWith('%')){
+          roles.handler(message);
+          }
+          }
+          }
+          
     if(message.content === "testt"){
         message.reply(message.author.username);
         message.reply(message.author.tag);
@@ -28,12 +51,7 @@ client.on('message', message => {
     if((message.content.startsWith("!iv ")) && (config.discord.admins) && (config.discord.admins.indexOf(message.author.id) > -1)){
         iv.handler(message);
     }
-
-    if(config.roles){
-        if(message.content.startsWith('%')){
-            roles.handler(message);
-        }
-    }
+          
 
     if((message.content.startsWith('?')) && (channel.id === config.discord.whosthat)){
         whosthat.handler(message);
@@ -74,4 +92,5 @@ async function top(message){
     message.channel.send(top);
 }
 
+        
 client.login(config.discord.token);
