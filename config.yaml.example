@@ -19,3 +19,11 @@ discord:
 roles: 
     sortlga: false
     teams: true
+
+commands:
+    map: 'true'
+    link: 'true'
+
+settings:
+    map: 'Map link'
+    link: 'Discord Link'
